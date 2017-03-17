@@ -207,7 +207,18 @@
 //- Always include ZeroMQ headers -------------------------------------------
 
 #include "zmq.h"
-#include "zmq_utils.h"
+#if (defined(ZMQ_VERSION_MAJOR) && defined(ZMQ_VERSION_MINOR))
+# if ( ZMQ_VERSION_MAJOR < 4 || (ZMQ_VERSION_MAJOR == 4 && ZMQ_VERSION_MINOR < 2) )
+// LEGACY INCLUDE: This only spews warnings now and is included in zmq.h anyway
+// This was changed in the 4.1.0 timeframe, see zeromq commit a087ce55
+// Intermediate versions can suffer the warnings; from 4.2.x we don't want to
+#   include "zmq_utils.h"
+# endif
+#elif (defined(ZMQ_VERSION_MAJOR))
+# if (ZMQ_VERSION_MAJOR < 4)
+#   include "zmq_utils.h"
+# endif
+#endif
 
 //- Standard ANSI include files ---------------------------------------------
 
