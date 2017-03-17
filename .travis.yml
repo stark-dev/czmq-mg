@@ -2,6 +2,8 @@
 
 language: c
 
+cache: ccache
+
 sudo: required
 
 env:
