@@ -109,6 +109,10 @@ s_posix_populate_entry (zdir_t *self, struct dirent *entry)
 //  path, optionally located under some parent path. If parent is "-", then
 //  loads only the top-level directory, and does not use parent as a path.
 
+#ifndef WIN32
+static pthread_mutex_t s_readdir_mutex = PTHREAD_MUTEX_INITIALIZER;
+#endif
+
 zdir_t *
 zdir_new (const char *path, const char *parent)
 {
@@ -188,6 +192,8 @@ zdir_new (const char *path, const char *parent)
 
     DIR *handle = opendir (self->path);
     if (handle) {
+/*
+// Code from czmq-v3.0.2
         //  Calculate system-specific size of dirent block
         int dirent_size = offsetof (struct dirent, d_name)
                           + pathconf (self->path, _PC_NAME_MAX) + 1;
@@ -205,6 +211,27 @@ zdir_new (const char *path, const char *parent)
         }
         free (entry);
         closedir (handle);
+*/
+
+// Code from czmq-v4.0.3
+        // readdir_r is deprecated in glibc 2.24, but readdir is still not
+        // guaranteed to be thread safe if the same directory is accessed
+        // by different threads at the same time. Unfortunately given it was
+        // not a constraint before we cannot change it now as it would be an
+        // API breakage. Use a global lock when scanning the directory to
+        // work around it.
+        pthread_mutex_lock (&s_readdir_mutex);
+        struct dirent *entry = readdir (handle);
+        pthread_mutex_unlock (&s_readdir_mutex);
+        while (entry != NULL) {
+            // Beware of recursion. Lock only around readdir calls.
+            s_posix_populate_entry (self, entry);
+            pthread_mutex_lock (&s_readdir_mutex);
+            entry = readdir (handle);
+            pthread_mutex_unlock (&s_readdir_mutex);
+        }
+        closedir (handle);
+
     }
 #endif
     else {
