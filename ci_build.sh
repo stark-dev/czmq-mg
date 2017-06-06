@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if [ $BUILD_TYPE == "default" ]; then
+if [ $BUILD_TYPE == "default" ] || [ $BUILD_TYPE == "valgrind" ]; then
     # Build, check, and install libsodium if WITH_LIBSODIUM is set
     if [ -n "$WITH_LIBSODIUM" ]; then
         echo "==== BUILD LIBSODIUM ===="
@@ -18,7 +18,11 @@ if [ $BUILD_TYPE == "default" ]; then
 
     # Build, check, and install CZMQ from local source
     echo "==== BUILD LIBCZMQ (current project) ===="
-    ./autogen.sh && ./configure && make check-verbose VERBOSE=1 && sudo make install
+    ./autogen.sh && ./configure && case "$BUILD_TYPE" in
+        default) make check-verbose VERBOSE=1 && sudo make install ;;
+        valgrind) make memcheck ;;
+        *) echo "Unknown BUILD_TYPE"; false ;;
+    esac
 else
     cd ./builds/${BUILD_TYPE} && ./ci_build.sh
 fi
