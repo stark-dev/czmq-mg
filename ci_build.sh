@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-if [ $BUILD_TYPE == "default" ] || [ $BUILD_TYPE == "valgrind" ]; then
+case "$BUILD_TYPE" in
+"") echo "BUILD_TYPE is not set!" >&2 ; false ;;
+default|valgrind)
     CONFIG_OPTS=()
     if [ -n "$ADDRESS_SANITIZER" ] && [ "$ADDRESS_SANITIZER" == "enabled" ]; then
         CONFIG_OPTS+=("--enable-address-sanitizer=yes")
@@ -27,9 +29,9 @@ if [ $BUILD_TYPE == "default" ] || [ $BUILD_TYPE == "valgrind" ]; then
     case "$BUILD_TYPE" in
         default) make check-verbose VERBOSE=1 && sudo make install ;;
         valgrind) make memcheck ;;
-        *) echo "Unknown BUILD_TYPE"; false ;;
+        *) echo "Unknown BUILD_TYPE" 2>&1; false ;;
     esac
-else
+    ;;
+*)
     cd ./builds/${BUILD_TYPE} && ./ci_build.sh
-fi
-
+esac
