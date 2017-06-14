@@ -36,6 +36,7 @@ matrix:
     addons:
       apt:
         packages:
+        - valgrind
         - uuid-dev
   - env: BUILD_TYPE=valgrind ZMQ_REPO=zeromq4-x WITH_LIBSODIUM=1
     os: linux
@@ -44,6 +45,7 @@ matrix:
     addons:
       apt:
         packages:
+        - valgrind
         - uuid-dev
   - env: BUILD_TYPE=valgrind ZMQ_REPO=libzmq WITH_LIBSODIUM=1
     os: linux
@@ -52,6 +54,7 @@ matrix:
     addons:
       apt:
         packages:
+        - valgrind
         - uuid-dev
 
   - env: BUILD_TYPE=valgrind ZMQ_REPO=zeromq3-x ADDRESS_SANITIZER=enabled
@@ -61,6 +64,7 @@ matrix:
     addons:
       apt:
         packages:
+        - valgrind
         - uuid-dev
   - env: BUILD_TYPE=valgrind ZMQ_REPO=zeromq4-x ADDRESS_SANITIZER=enabled WITH_LIBSODIUM=1
     os: linux
@@ -69,6 +73,7 @@ matrix:
     addons:
       apt:
         packages:
+        - valgrind
         - uuid-dev
   - env: BUILD_TYPE=valgrind ZMQ_REPO=libzmq ADDRESS_SANITIZER=enabled WITH_LIBSODIUM=1
     os: linux
@@ -77,6 +82,7 @@ matrix:
     addons:
       apt:
         packages:
+        - valgrind
         - uuid-dev
 
 
