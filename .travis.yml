@@ -17,15 +17,68 @@ env:
 - BUILD_TYPE=default ZMQ_REPO=zeromq4-x WITH_LIBSODIUM=1
 - BUILD_TYPE=default ZMQ_REPO=libzmq    WITH_LIBSODIUM=1
 #- BUILD_TYPE=valgrind ZMQ_REPO=zeromq2-x
-- BUILD_TYPE=valgrind ZMQ_REPO=zeromq3-x
-- BUILD_TYPE=valgrind ZMQ_REPO=zeromq4-x WITH_LIBSODIUM=1
-- BUILD_TYPE=valgrind ZMQ_REPO=libzmq    WITH_LIBSODIUM=1
+#- BUILD_TYPE=valgrind ZMQ_REPO=zeromq3-x
+#- BUILD_TYPE=valgrind ZMQ_REPO=zeromq4-x WITH_LIBSODIUM=1
+#- BUILD_TYPE=valgrind ZMQ_REPO=libzmq    WITH_LIBSODIUM=1
 #- BUILD_TYPE=valgrind ZMQ_REPO=zeromq2-x ADDRESS_SANITIZER=enabled
-- BUILD_TYPE=valgrind ZMQ_REPO=zeromq3-x ADDRESS_SANITIZER=enabled
-- BUILD_TYPE=valgrind ZMQ_REPO=zeromq4-x ADDRESS_SANITIZER=enabled WITH_LIBSODIUM=1
-- BUILD_TYPE=valgrind ZMQ_REPO=libzmq    ADDRESS_SANITIZER=enabled WITH_LIBSODIUM=1
+#- BUILD_TYPE=valgrind ZMQ_REPO=zeromq3-x ADDRESS_SANITIZER=enabled
+#- BUILD_TYPE=valgrind ZMQ_REPO=zeromq4-x ADDRESS_SANITIZER=enabled WITH_LIBSODIUM=1
+#- BUILD_TYPE=valgrind ZMQ_REPO=libzmq    ADDRESS_SANITIZER=enabled WITH_LIBSODIUM=1
 #- BUILD_TYPE=qt-android
 #- BUILD_TYPE=check-py
+
+matrix:
+  include:
+  - env: BUILD_TYPE=valgrind ZMQ_REPO=zeromq3-x
+    os: linux
+    dist: trusty
+    sudo: required
+    addons:
+      apt:
+        packages:
+        - uuid-dev
+  - env: BUILD_TYPE=valgrind ZMQ_REPO=zeromq4-x WITH_LIBSODIUM=1
+    os: linux
+    dist: trusty
+    sudo: required
+    addons:
+      apt:
+        packages:
+        - uuid-dev
+  - env: BUILD_TYPE=valgrind ZMQ_REPO=libzmq WITH_LIBSODIUM=1
+    os: linux
+    dist: trusty
+    sudo: required
+    addons:
+      apt:
+        packages:
+        - uuid-dev
+
+  - env: BUILD_TYPE=valgrind ZMQ_REPO=zeromq3-x ADDRESS_SANITIZER=enabled
+    os: linux
+    dist: trusty
+    sudo: required
+    addons:
+      apt:
+        packages:
+        - uuid-dev
+  - env: BUILD_TYPE=valgrind ZMQ_REPO=zeromq4-x ADDRESS_SANITIZER=enabled WITH_LIBSODIUM=1
+    os: linux
+    dist: trusty
+    sudo: required
+    addons:
+      apt:
+        packages:
+        - uuid-dev
+  - env: BUILD_TYPE=valgrind ZMQ_REPO=libzmq ADDRESS_SANITIZER=enabled WITH_LIBSODIUM=1
+    os: linux
+    dist: trusty
+    sudo: required
+    addons:
+      apt:
+        packages:
+        - uuid-dev
+
 
 before_script:
 #- sudo apt-get install uuid-dev
