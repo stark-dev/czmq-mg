@@ -2,7 +2,7 @@
 
 case "$BUILD_TYPE" in
 "") echo "BUILD_TYPE is not set!" >&2 ; false ;;
-default|valgrind)
+default|valgrind|selftest)
     CONFIG_OPTS=()
     if [ -n "$ADDRESS_SANITIZER" ] && [ "$ADDRESS_SANITIZER" == "enabled" ]; then
         CONFIG_OPTS+=("--enable-address-sanitizer=yes")
@@ -28,6 +28,7 @@ default|valgrind)
     ./autogen.sh && ./configure "${CONFIG_OPTS[@]}" && \
     case "$BUILD_TYPE" in
         default) make check-verbose VERBOSE=1 && sudo make install ;;
+        selftest) make check-verbose ;;
         valgrind) make memcheck ;;
         *) echo "Unknown BUILD_TYPE" 2>&1; false ;;
     esac
