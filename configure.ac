@@ -57,6 +57,7 @@ AC_PROG_AWK
 PKG_PROG_PKG_CONFIG
 
 # Code coverage
+AC_MSG_CHECKING([whether to enable GCov])
 AC_ARG_WITH(gcov, [AS_HELP_STRING([--with-gcov=yes/no],
                   [With GCC Code Coverage reporting.])],
                   [CZMQ_GCOV="$withval"])
@@ -67,8 +68,49 @@ if test "x${CZMQ_GCOV}" == "xyes"; then
     if test "x${CZMQ_ORIG_CFLAGS}" != "xnone"; then
         CFLAGS="${CFLAGS} ${CZMQ_ORIG_CFLAGS}"
     fi
+    AM_CONDITIONAL(WITH_GCOV, true)
+    AC_MSG_RESULT([yes])
+else
+    AM_CONDITIONAL(WITH_GCOV, false)
+    AC_MSG_RESULT([no])
 fi
 
+# Memory mis-use detection
+AC_MSG_CHECKING([whether to enable ASan])
+AC_ARG_ENABLE(address-sanitizer, [AS_HELP_STRING([--enable-address-sanitizer=yes/no],
+                  [Build with GCC Address Sanitizer instrumentation])],
+                  [CZMQ_ASAN="$enableval"])
+
+if test "x${CZMQ_ASAN}" == "xyes"; then
+    CFLAGS="${CFLAGS} -fsanitize=address -g -O0 -fno-omit-frame-pointer"
+    CXXFLAGS="${CXXFLAGS} -fsanitize=address -g -O0 -fno-omit-frame-pointer"
+
+    AM_CONDITIONAL(ENABLE_ASAN, true)
+    AC_MSG_RESULT([yes])
+else
+    AM_CONDITIONAL(ENABLE_ASAN, false)
+    AC_MSG_RESULT([no])
+fi
+
+# Set pkgconfigdir
+AC_ARG_WITH([pkgconfigdir], AS_HELP_STRING([--with-pkgconfigdir=PATH],
+    [Path to the pkgconfig directory [[LIBDIR/pkgconfig]]]),
+    [pkgconfigdir="$withval"], [pkgconfigdir='${libdir}/pkgconfig'])
+AC_SUBST([pkgconfigdir])
+
+# Use the provided pkgconfigdir not only to write our pkg-config data,
+# but also as an additional location to look for other packages metadata.
+AS_IF([test -n "${pkgconfigdir}" -a -d "${pkgconfigdir}"],
+    [AS_IF([test -z "${PKG_CONFIG_PATH}"],
+        [PKG_CONFIG_PATH="${pkgconfigdir}"],
+        [PKG_CONFIG_PATH="${pkgconfigdir}:${PKG_CONFIG_PATH}"])
+     export PKG_CONFIG_PATH
+    ])
+
+# Will be used to add flags to pkg-config useful when apps want to statically link
+PKGCFG_LIBS_PRIVATE=""
+
+# Archive user supplied flags
 PREVIOUS_CFLAGS="${CFLAGS}"
 PREVIOUS_LIBS="${LIBS}"
 
