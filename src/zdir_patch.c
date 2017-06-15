@@ -67,7 +67,7 @@ zdir_patch_new (const char *path, zfile_t *file,
         zdir_patch_destroy (&self);
         return NULL;
     }
-    if (alias [strlen (alias) - 1] == '/')
+    if (strlen (alias) && alias [strlen (alias) - 1] == '/')
         sprintf (self->vpath, "%s%s", alias, filename);
     else
         sprintf (self->vpath, "%s/%s", alias, filename);
