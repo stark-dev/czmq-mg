@@ -1344,7 +1344,10 @@ zsock_set_sndtimeo (void *self, int sndtimeo)
     assert (self);
 #   if defined (ZMQ_SNDTIMEO)
     int rc = zmq_setsockopt (zsock_resolve (self), ZMQ_SNDTIMEO, &sndtimeo, sizeof (int));
-    assert (rc == 0 || zmq_errno () == ETERM);
+    if (rc == -1 && sndtimeo == 0)
+        zsys_warning ("%s: rc=%d, sndtimeo=%d, zmq_errno ()=%d, zsys_interrupted=%d\nassert suppressed, this is OK in case of shutdown\n", __FUNCTION__, sndtimeo, zmq_errno (), zsys_interrupted);
+    else
+        assert (rc == 0 || zmq_errno () == ETERM);
 #   endif
 }
 

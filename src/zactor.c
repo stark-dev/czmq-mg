@@ -65,10 +65,17 @@ s_thread_shim (void *args)
     assert (args);
     shim_t *shim = (shim_t *) args;
     shim->handler (shim->pipe, shim->args);
-    //  Do not block, if the other end of the pipe is already deleted
-    zsock_set_sndtimeo (shim->pipe, 0);
-    zsock_signal (shim->pipe, 0);
-    zsock_destroy (&shim->pipe);
+    //MVY: shim->pipe is 0x0 when tntnet is restarted during operation like
+    //     asset import. This should prevent segfault while allowing the server
+    //     to end correctly.
+    if (shim->pipe) {
+        //  Do not block, if the other end of the pipe is already deleted
+        zsock_set_sndtimeo (shim->pipe, 0);
+        zsock_signal (shim->pipe, 0);
+        zsock_destroy (&shim->pipe);
+    }
+    else
+        zsys_info ("s_thread_shim: shim->pipe is NULL, skip signalling");
     free (shim);
     return NULL;
 }
@@ -164,10 +171,15 @@ zactor_destroy (zactor_t **self_p)
         //  If the pipe isn't connected any longer, assume child thread
         //  has already quit due to other reasons and don't collect the
         //  exit signal.
-        zsock_set_sndtimeo (self->pipe, 0);
-        if (zstr_send (self->pipe, "$TERM") == 0)
-            zsock_wait (self->pipe);
-        zsock_destroy (&self->pipe);
+        //  MVY: have no idea why is this happening, but the same issue as s_thread_shim
+        if (self->pipe) {
+            zsock_set_sndtimeo (self->pipe, 0);
+            if (zstr_send (self->pipe, "$TERM") == 0)
+                zsock_wait (self->pipe);
+            zsock_destroy (&self->pipe);
+        }
+        else
+            zsys_info ("zactor_destroy: self->pipe is NULL");
         self->tag = 0xDeadBeef;
         free (self);
         *self_p = NULL;
