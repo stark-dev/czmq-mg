@@ -431,30 +431,40 @@ typedef struct sockaddr_in inaddr_t;    //  Internet socket address structure
 #   define  ZSYS_RANDOF_FLT float
 #endif // ZSYS_RANDOF_FLT is defined by caller... trust them or explode later
 
+// Implementations vary...
+#if !defined (ZSYS_RANDOF_FUNC)
+# if defined (ZSYS_RANDOF_FUNC_BITS)
+#  undef ZSYS_RANDOF_FUNC_BITS
+# endif
+# if (defined (__WINDOWS__)) || (defined (__UTYPE_IBMAIX)) \
+ || (defined (__UTYPE_HPUX)) || (defined (__UTYPE_SUNOS)) || (defined (__UTYPE_SOLARIS))
+#   define  ZSYS_RANDOF_FUNC    rand
+#   define  ZSYS_RANDOF_FUNC_BITS 15
+# else
+#   define  ZSYS_RANDOF_FUNC    random
+#   define  ZSYS_RANDOF_FUNC_BITS 32
+# endif
+#endif // ZSYS_RANDOF_FUNC is defined by caller... trust them or explode later
+
 //  Limits below were experimented for 32-bit floats on x86 with test-randof
 //  Due to discrete rounding, greater values caused collisions with the
 //  fraction s_randof_factor() defined below returning 1.0.
 #if !defined (ZSYS_RANDOF_MAX)
-# if defined (RAND_MAX)
-#  if (RAND_MAX > (UINT32_MAX>>6))
-#   define  ZSYS_RANDOF_MAX (UINT32_MAX>>6)
-#  else // RAND_MAX is small enough to not overflow our calculations
-#   define  ZSYS_RANDOF_MAX RAND_MAX
-#  endif
-# else // No RAND_MAX - use a smaller safer limit, but with values too discrete
-#   define  ZSYS_RANDOF_MAX INT16_MAX
-# endif
-#endif // ZSYS_RANDOF_MAX is defined by caller... trust them or explode later
-
-// Implementations vary...
-#if !defined (ZSYS_RANDOF_FUNC)
-# if (defined (__WINDOWS__)) || (defined (__UTYPE_IBMAIX)) \
- || (defined (__UTYPE_HPUX)) || (defined (__UTYPE_SUNOS)) || (defined (__UTYPE_SOLARIS))
-#   define  ZSYS_RANDOF_FUNC    rand
+# if (ZSYS_RANDOF_FUNC_BITS >= 26)
+    // Assume that random() is at least 32-bit as it is on most platforms
+#       define  ZSYS_RANDOF_MAX (UINT32_MAX>>6)
 # else
-#   define  ZSYS_RANDOF_FUNC    random
-# endif
-#endif // ZSYS_RANDOF_FUNC is defined by caller... trust them or explode later
+#  if defined (RAND_MAX)
+#   if (RAND_MAX > (UINT32_MAX>>6))
+#       define  ZSYS_RANDOF_MAX (UINT32_MAX>>6)
+#   else // RAND_MAX is small enough to not overflow our calculations
+#       define  ZSYS_RANDOF_MAX RAND_MAX
+#   endif
+#  else // No RAND_MAX - use a smaller safer limit, but with values too discrete
+#       define  ZSYS_RANDOF_MAX INT16_MAX
+#  endif
+# endif // not random()
+#endif // ZSYS_RANDOF_MAX is defined by caller... trust them or explode later
 
 #define s_randof_factor()   (ZSYS_RANDOF_FLT)( (ZSYS_RANDOF_FLT)(ZSYS_RANDOF_FUNC() % (ZSYS_RANDOF_MAX - 1)) / ( (ZSYS_RANDOF_FLT)(ZSYS_RANDOF_MAX) ) )
 
@@ -464,15 +474,15 @@ typedef struct sockaddr_in inaddr_t;    //  Internet socket address structure
 // Fuzziness added below (division by slightly more than a whole number) solves
 // this wonderfully even for "num" ranges twice as big as the ZSYS_RANDOF_MAX.
 #if (ZSYS_RANDOF_MAX > UINT16_MAX)
-#   define randof(num)  (int) ( (ZSYS_RANDOF_FLT)(num) * s_randof_factor() / ( 1.0 + s_randof_factor()/100 ) )
+#   define randof(num)  (int) ( (ZSYS_RANDOF_FLT)(num) * s_randof_factor() / ( 1.0 + s_randof_factor() / 100.0 ) )
 #else // boost dispersion
 # if (ZSYS_RANDOF_MAX > INT16_MAX)
-#   define randof(num)  (int) ( (ZSYS_RANDOF_FLT)(num) * ( s_randof_factor() + s_randof_factor() ) / ( 2.0 + s_randof_factor() / 2 ) )
+#   define randof(num)  (int) ( (ZSYS_RANDOF_FLT)(num) * ( s_randof_factor() + s_randof_factor() ) / ( 2.0 + s_randof_factor() / 2.0 ) )
 # else
 #  if (ZSYS_RANDOF_MAX > UINT8_MAX)
-#   define randof(num)  (int) ( (ZSYS_RANDOF_FLT)(num) * ( s_randof_factor() + s_randof_factor() + s_randof_factor() + s_randof_factor() ) / ( 4.0 + s_randof_factor() * 100 ) )
+#   define randof(num)  (int) ( (ZSYS_RANDOF_FLT)(num) * ( s_randof_factor() + s_randof_factor() + s_randof_factor() + s_randof_factor() ) / ( 4.0 + s_randof_factor() * 10.0 ) )
 #  else
-#   define randof(num)  (int) ( (ZSYS_RANDOF_FLT)(num) * ( s_randof_factor() + s_randof_factor() + s_randof_factor() + s_randof_factor() + s_randof_factor() + s_randof_factor() ) / ( 6.0 + s_randof_factor() * 100 ) )
+#   define randof(num)  (int) ( (ZSYS_RANDOF_FLT)(num) * ( s_randof_factor() + s_randof_factor() + s_randof_factor() + s_randof_factor() + s_randof_factor() + s_randof_factor() ) / ( 6.0 + s_randof_factor() * 100.0 ) )
 #  endif
 # endif
 #endif
