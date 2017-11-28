@@ -1,0 +1,19 @@
+#!/usr/bin/make -f
+%:
+	dh $@ \
+	    --parallel
+
+override_dh_auto_configure:
+	rm -rf src/.deps
+	autoreconf -fi
+	dh_auto_configure -- --disable-static --libdir=/usr/lib
+
+override_dh_auto_install:
+	dh_auto_install
+	find . -name makecert | while read i; do mv $${i} $${i}_czmq; done
+
+override_dh_auto_test:
+	echo "Skipping as unstable"
+
+override_dh_strip:
+	dh_strip --dbg-package=libczmq-dbg
