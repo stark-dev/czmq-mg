@@ -35,7 +35,7 @@ pipeline {
             description: 'Attempt a build with docs in this run? (Note: corresponding tools are required in the build environment)',
             name: 'DO_BUILD_DOCS')
         booleanParam (
-            defaultValue: true,
+            defaultValue: false,
             description: 'Attempt "make check" in this run?',
             name: 'DO_TEST_CHECK')
         booleanParam (
