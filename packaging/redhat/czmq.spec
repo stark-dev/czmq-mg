@@ -2,6 +2,7 @@
 # spec file for package 
 #
 # Copyright (c) 2014 SUSE LINUX Products GmbH, Nuernberg, Germany.
+#    Copyright (C) 2014 - 2017 Eaton
 #
 # All modifications and additions to the file contributed by third parties
 # remain the property of their copyright owners, unless otherwise agreed
@@ -15,6 +16,17 @@
 # Please submit bugfixes or comments via http://bugs.opensuse.org/
 #
 
+# To build with draft APIs, use "--with drafts" in rpmbuild for local builds or add
+#   Macros:
+#   %_with_drafts 1
+# at the BOTTOM of the OBS prjconf
+%bcond_with drafts
+%if %{with drafts}
+%define DRAFTS yes
+%else
+%define DRAFTS no
+%endif
+%define SYSTEMD_UNIT_DIR %(pkg-config --variable=systemdsystemunitdir systemd)
 Name:           czmq
 Version:        3.0.2
 Release:        4
@@ -22,7 +34,7 @@ License:        LGPL-2.1+
 Summary:        High-level C binding for ØMQ
 Url:            https://github.com/zeromq/czmq
 Group:          Development/Libraries/C and C++
-Source0:        czmq-3.0.2.20171128130150~gita523b94f927e.tar.gz
+Source0:        %{name}-%{version}.tar.gz
 #Patch0:         0000-prevent-s_thread_shim-assert.patch
 #Patch1:         0001-suppress-sndtimeo-assert.patch
 #Patch2:         0001-Problem-zlist_dup-doesn-t-create-copy-autofree-list-.patch
@@ -65,10 +77,10 @@ Development files (headers, pkgconfig, cmake) for %{name}.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
+#%patch0 -p1
+#%patch1 -p1
+#%patch2 -p1
+#%patch3 -p1
 
 %build
 autoreconf -fiv
@@ -104,4 +116,3 @@ rm -f %{buildroot}/%{_libdir}/*.la
 %{_mandir}/man7/%{name}.7.gz
 
 %changelog
-
