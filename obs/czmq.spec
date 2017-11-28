@@ -22,11 +22,11 @@ License:        LGPL-2.1+
 Summary:        High-level C binding for ØMQ
 Url:            https://github.com/zeromq/czmq
 Group:          Development/Libraries/C and C++
-Source0:        https://github.com/zeromq/czmq/archive/v%{version}.tar.gz
-Patch0:         0000-prevent-s_thread_shim-assert.patch
-Patch1:         0001-suppress-sndtimeo-assert.patch
-Patch2:         0001-Problem-zlist_dup-doesn-t-create-copy-autofree-list-.patch
-Patch3:         0002-Problem-zlist_dup-does-not-copy-comparison-function.patch
+Source0:        czmq-3.0.2.20171128130150~gita523b94f927e.tar.gz
+#Patch0:         0000-prevent-s_thread_shim-assert.patch
+#Patch1:         0001-suppress-sndtimeo-assert.patch
+#Patch2:         0001-Problem-zlist_dup-doesn-t-create-copy-autofree-list-.patch
+#Patch3:         0002-Problem-zlist_dup-does-not-copy-comparison-function.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildRequires:  zeromq-devel > 4.1
 BuildRequires:  libsodium-devel
