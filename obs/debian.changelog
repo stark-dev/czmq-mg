@@ -1,0 +1,708 @@
+czmq (3.0.2-3) stable; urgency=low
+  - Backport zlist_dup fixes from upstream:
+    0001-Problem-zlist_dup-doesn-t-create-copy-autofree-list-.patch
+    0002-Problem-zlist_dup-does-not-copy-comparison-function.patch
+
+ -- Michal Marek <MichalMarek1@Eaton.com>  Tue, 21 Nov  2017 14:00:00 +0100
+czmq (3.0.2-4) stable; urgency=low
+  - add 0001-suppress-sndtimeo-assert.patch
+    * suppress zsock_set_sndtimeo assert during tntnet shutdown
+
+ -- Michal Vyskocil <MichalVyskocil@Eaton.com>  Tue,  8 Nov  2016 15:59:25 +0100
+
+czmq (3.0.2-3) stable; urgency=low
+  - add 0000-suppress-assert.patch
+    * fixes s_thread_shim and zactor_destroy
+
+ -- Michal Vyskocil <MichalVyskocil@Eaton.com>  Tue,  8 Nov  2016 15:59:25 +0100
+
+czmq (3.0.2-1) stable; urgency=low
+  - Update to 3.0.2
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Mon, 26 Oct  2015 11:36:25 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Skip tests in czmq
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Mon, 5 Oct  2015 11:36:25 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Problem: czmq/malamute don't build
+
+ -- Michal Vyskocil <michalvyskocil@eaton.com>  Mon, 5 Oct  2015 08:18:00 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Problem: can't debug malamute issues
+
+ -- Michal Vyskocil <michalvyskocil@eaton.com>  Mon, 5 Oct  2015 07:04:56 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Rebase
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Fri, 2 Oct  2015 07:14:45 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Better SSL parameters
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Fri, 2 Oct  2015 07:00:04 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Version bump
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Thu, 1 Oct  2015 11:29:28 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Fix typo
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Thu, 1 Oct  2015 11:26:51 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Missing actual patch
+
+ -- Arnaud Quette <arnaud.quette@free.fr>  Mon, 28 Sep  2015 14:54:28 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Add support for more Eaton 3phase alarms
+
+ -- Arnaud Quette <arnaud.quette@free.fr>  Mon, 28 Sep  2015 14:51:53 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Revised the last patch, following Jim's review
+
+ -- Arnaud Quette <arnaud.quette@free.fr>  Tue, 22 Sep  2015 15:30:44 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Add support for ePDU outlet groups management
+
+ -- Arnaud Quette <arnaud.quette@free.fr>  Mon, 21 Sep  2015 12:34:08 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Add improvements for 3ph ePDU alarms and SNMP
+
+ -- Arnaud Quette <arnaud.quette@free.fr>  Fri, 11 Sep  2015 14:05:30 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Add improvements for ePDU alarms and SNMP
+
+ -- Arnaud Quette <arnaud.quette@free.fr>  Tue, 8 Sep  2015 07:43:25 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Propagate to spec file as well
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Thu, 3 Sep  2015 07:10:11 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Monotonic time for request time in tntnet
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Thu, 3 Sep  2015 06:57:10 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Better nut/systemd integration
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Fri, 21 Aug  2015 10:16:05 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - added patch
+
+ -- Tomas Halman <TomasHalman@eaton.com>  Wed, 19 Aug  2015 14:13:06 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - reintroducing 0013-Fix-dummy-ups-for-external-value-changes.patch
+
+ -- Tomas Halman <TomasHalman@eaton.com>  Wed, 19 Aug  2015 14:03:26 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - removed hotfix
+
+ -- Tomas Halman <TomasHalman@eaton.com>  Tue, 11 Aug  2015 07:23:15 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Commit the previously missing .dsc
+
+ -- Arnaud Quette <arnaud.quette@free.fr>  Mon, 10 Aug  2015 13:19:17 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Fix dummy-ups for remote settings through upsrw
+
+ -- Arnaud Quette <arnaud.quette@free.fr>  Mon, 10 Aug  2015 11:36:27 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - better fix of closed connection
+
+ -- Tomas Halman <TomasHalman@eaton.com>  Tue, 4 Aug  2015 06:57:21 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - tab fixed
+
+ -- Tomas Halman <TomasHalman@eaton.com>  Mon, 3 Aug  2015 12:19:46 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Problem: nutclient library sometimes reads socket closed by server.
+
+ -- Tomas Halman <TomasHalman@eaton.com>  Mon, 3 Aug  2015 11:17:35 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Problem: dh_auto_test feels it can build random C files
+
+ -- Michal Vyskocil <michalvyskocil@eaton.com>  Thu, 23 Jul  2015 12:05:58 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - update malamute with issue81 fix
+
+ -- Michal Vyskocil <michalvyskocil@eaton.com>  Thu, 23 Jul  2015 11:48:38 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - ignore OBS files and tarballs by default
+
+ -- Michal Vyskocil <michalvyskocil@eaton.com>  Mon, 13 Jul  2015 12:45:19 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - centos support for malamute
+
+ -- Michal Vyskocil <michalvyskocil@eaton.com>  Mon, 13 Jul  2015 12:44:34 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - fix issues in czmq.spec
+
+ -- Michal Vyskocil <michalvyskocil@eaton.com>  Mon, 13 Jul  2015 12:25:00 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - CentOS_7.0 packaging
+
+ -- Michal Vyskocil <michalvyskocil@eaton.com>  Mon, 13 Jul  2015 11:56:02 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - zeromq4.changes
+
+ -- Michal Vyskocil <michalvyskocil@eaton.com>  Mon, 13 Jul  2015 11:48:27 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - add zeromq4.spec and _service file
+
+ -- Michal Vyskocil <michalvyskocil@eaton.com>  Mon, 13 Jul  2015 11:01:19 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - libsodium.changes
+
+ -- Michal Vyskocil <michalvyskocil@eaton.com>  Mon, 13 Jul  2015 10:02:20 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - add libsodium/_service
+
+ -- Michal Vyskocil <michalvyskocil@eaton.com>  Mon, 13 Jul  2015 09:50:00 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - add libsodium for CentOS_7.0
+
+ -- Michal Vyskocil <michalvyskocil@eaton.com>  Mon, 13 Jul  2015 09:41:49 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Fix typo
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Tue, 30 Jun  2015 12:01:53 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Remove extra headers
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Tue, 30 Jun  2015 06:20:37 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Delete systemd integration in RPM as it breaks on CentOS
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Thu, 25 Jun  2015 10:02:57 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - fix number in dsc file
+
+ -- Michal Vyskocil <michalvyskocil@eaton.com>  Tue, 23 Jun  2015 10:42:08 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - add 0011-libnutscanner-scan-one-ip-xml-http.patch
+
+ -- Michal Vyskocil <michalvyskocil@eaton.com>  Tue, 23 Jun  2015 08:13:43 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Libnutscanner patch
+
+ -- Tomas Halman <TomasHalman@eaton.com>  Thu, 18 Jun  2015 14:07:45 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Fix debian packaging again
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Wed, 17 Jun  2015 06:57:58 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Bump nut version
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Mon, 15 Jun  2015 11:17:17 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Add missing file
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Mon, 15 Jun  2015 10:45:50 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Fix nut rules
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Fri, 12 Jun  2015 13:39:16 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Update nut to include scanner
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Fri, 12 Jun  2015 12:51:50 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Rename patches in tntnet
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Thu, 11 Jun  2015 13:31:12 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Readd tntnet rpm version
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Wed, 10 Jun  2015 12:49:08 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Upadte tntdb and add deb version
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Wed, 10 Jun  2015 12:43:28 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Debian version of tntnet, removing the rpm one
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Wed, 10 Jun  2015 12:36:33 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Fix crash on ARM in malamute
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Thu, 28 May  2015 13:27:24 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Problem: updated malamute does not build
+
+ -- Michal Vyskocil <michalvyskocil@eaton.com>  Thu, 28 May  2015 08:18:12 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Updated configuration to fix crash
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Thu, 28 May  2015 08:02:15 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Problem: malamute segfaults
+
+ -- Michal Vyskocil <michalvyskocil@eaton.com>  Thu, 28 May  2015 07:13:01 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Escaping needed
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Mon, 25 May  2015 10:58:14 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Yet another fix
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Mon, 25 May  2015 10:39:28 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Forgot backslash
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Mon, 25 May  2015 10:24:27 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - More MariaDB experiments
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Mon, 25 May  2015 09:27:14 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - More patches for MariaDB
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Mon, 18 May  2015 11:53:24 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Automatically restart mysql
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Mon, 18 May  2015 10:36:59 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Better rights by default
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Mon, 18 May  2015 08:32:42 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - One more patch
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Wed, 13 May  2015 14:36:59 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Updated mariadb
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Tue, 12 May  2015 06:04:49 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Update nut
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Tue, 12 May  2015 06:00:11 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Enforce utf-8 even on clients in MariaDB
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Thu, 2 Apr  2015 08:52:42 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - MariaDB update
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Thu, 2 Apr  2015 06:40:27 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Make MySQL error on errors.
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Tue, 31 Mar  2015 13:12:10 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - test
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Mon, 9 Mar  2015 12:05:11 +0100
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - More build dependencies
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Mon, 9 Mar  2015 11:55:42 +0100
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Better fix
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Mon, 9 Mar  2015 11:48:22 +0100
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Run autoreconf in czmq
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Mon, 9 Mar  2015 10:47:52 +0100
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - CZMQ update
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Mon, 9 Mar  2015 10:41:23 +0100
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - New malamute
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Mon, 9 Mar  2015 10:34:24 +0100
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Update changelog
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Wed, 25 Feb  2015 15:39:37 +0100
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - push
+
+ -- Tomas Halman <TomasHalman@eaton.com>  Wed, 4 Feb  2015 15:54:38 +0100
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - epdu patch incorporated
+
+ -- Tomas Halman <TomasHalman@eaton.com>  Wed, 4 Feb  2015 14:54:17 +0100
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Problem: mysqld does not have properly made socket
+
+ -- Jim Klimov <evgenyklimov@eaton.com>  Thu, 29 Jan  2015 12:28:36 +0100
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Hopefully last mysql fix
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Wed, 28 Jan  2015 15:47:59 +0100
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Debian compatible socket
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Wed, 28 Jan  2015 14:00:17 +0100
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Use correct socket
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Wed, 28 Jan  2015 12:14:50 +0100
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - mariadb-common -> mysql-common
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Wed, 28 Jan  2015 10:14:53 +0100
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - More fixes to get rid old debian mysql stuff
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Mon, 26 Jan  2015 13:12:00 +0100
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Infinite timeout for MariaDB
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Mon, 26 Jan  2015 11:20:48 +0100
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Better and fixed MariaDB
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Fri, 23 Jan  2015 21:06:43 +0100
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Conflicts with libzmq3
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Fri, 23 Jan  2015 12:08:10 +0100
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Bump zeromq version
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Thu, 22 Jan  2015 15:01:04 +0100
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - fix
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Thu, 22 Jan  2015 13:20:20 +0100
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - No multiarch
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Thu, 22 Jan  2015 10:17:46 +0100
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Re-add malamute package that was somehow lost
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Wed, 21 Jan  2015 08:48:45 +0100
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Update czmq to the latest snapshot as well
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Tue, 20 Jan  2015 14:37:28 +0100
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Update malamute
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Tue, 20 Jan  2015 07:32:53 +0100
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - ZeroMQ update
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Tue, 20 Jan  2015 08:48:04 +0100
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - BIOS-web package
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Mon, 12 Jan  2015 12:25:31 +0100
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Add missing install files
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Fri, 9 Jan  2015 09:23:56 +0100
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Add malamute and better czmq
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Thu, 8 Jan  2015 12:35:08 +0100
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Update czmq
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Thu, 8 Jan  2015 09:01:22 +0100
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Update MariaDB
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Thu, 11 Dec  2014 08:17:24 +0100
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Problem: an another typo in czmq sources
+
+ -- Michal Vyskocil <michalvyskocil@eaton.com>  Tue, 25 Nov  2014 11:20:51 +0100
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Fix CZMQ update
+
+ -- Arnaud Quette <arnaud.quette@free.fr>  Tue, 25 Nov  2014 09:23:21 +0100
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Problem: czmq don't build
+
+ -- Michal Vyskocil <michalvyskocil@eaton.com>  Tue, 25 Nov  2014 07:43:31 +0100
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Fix CZMQ upload, using CMake
+
+ -- Arnaud Quette <arnaud.quette@free.fr>  Mon, 24 Nov  2014 16:43:05 +0100
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - problem: incorrect sha1 for debian.tar.xz
+
+ -- Michal Vyskocil <michalvyskocil@eaton.com>  Mon, 24 Nov  2014 12:46:43 +0100
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Problem: can't copy&paste debian tarball
+
+ -- Michal Vyskocil <michalvyskocil@eaton.com>  Mon, 24 Nov  2014 12:42:23 +0100
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Problem: type in czmq dsc prevent the build
+
+ -- Michal Vyskocil <michalvyskocil@eaton.com>  Mon, 24 Nov  2014 12:00:50 +0100
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Problem: forgot to update sources when doing czmq update
+
+ -- Michal Vyskocil <michalvyskocil@eaton.com>  Mon, 24 Nov  2014 11:42:06 +0100
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Problem: need recent czmq which fixes segfaults
+
+ -- Michal Vyskocil <michalvyskocil@eaton.com>  Mon, 24 Nov  2014 10:32:46 +0100
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Fix building nut for arm
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Fri, 14 Nov  2014 06:40:41 +0100
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - No @ in service name for tntnet
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Thu, 23 Oct  2014 05:41:46 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Demangle libnutclient c++ symbols
+
+ -- Arnaud Quette <arnaud.quette@free.fr>  Mon, 27 Oct  2014 15:48:35 +0100
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Forgot sources
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Wed, 22 Oct  2014 13:28:19 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - TNTnet for CentOS
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Wed, 22 Oct  2014 13:21:29 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Using debian orig tarball in spec as well
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Wed, 22 Oct  2014 12:34:18 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Add the missing .dsc files for cxxtools 2.2.0-2
+
+ -- Arnaud Quette <arnaud.quette@free.fr>  Wed, 22 Oct  2014 11:35:43 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Update cxxtools to 2.2.0-2, to ship pkgconfig files
+
+ -- Arnaud Quette <arnaud.quette@free.fr>  Wed, 22 Oct  2014 11:09:49 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Add nut packages, to get libnutclient* in advance
+
+ -- Arnaud Quette <arnaud.quette@free.fr>  Tue, 21 Oct  2014 08:48:57 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Preliminary script to handle package upload to OBS
+
+ -- Arnaud Quette <arnaud.quette@free.fr>  Tue, 21 Oct  2014 08:46:27 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Update CZMQ package to 3.0.0~20141020git19ee647
+
+ -- Arnaud Quette <arnaud.quette@free.fr>  Tue, 21 Oct  2014 08:45:21 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Drop empty line from sources as it confuses sha1sum
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Fri, 10 Oct  2014 12:15:30 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Upload Debian source package of czmq 2.2.0
+
+ -- Arnaud Quette <arnaud.quette@free.fr>  Fri, 10 Oct  2014 10:11:17 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Upload Debian source package of libvariant 1.0.0
+
+ -- Arnaud Quette <arnaud.quette@free.fr>  Fri, 10 Oct  2014 10:06:51 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - ugly fix for provides, ldconfig after install/upgrade/uninstall
+
+ -- Tomas Halman <TomasHalman@eaton.com>  Fri, 12 Sep  2014 11:15:22 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - autorquirements on
+
+ -- Tomas Halman <TomasHalman@eaton.com>  Fri, 12 Sep  2014 06:56:32 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - excluding cidrcalc
+
+ -- Tomas Halman <TomasHalman@eaton.com>  Thu, 11 Sep  2014 13:30:01 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Add mariadb package
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Wed, 10 Sep  2014 06:50:14 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - cxxtools dependency
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Wed, 10 Sep  2014 06:07:04 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Add tntdb
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Mon, 8 Sep  2014 13:51:02 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - added spec file for centos
+
+ -- Tomas Halman <TomasHalman@eaton.com>  Mon, 8 Sep  2014 13:31:51 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Using correct sum
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Mon, 8 Sep  2014 13:10:21 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Adding cxxtools for CentOS
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Mon, 8 Sep  2014 13:03:29 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - removed forgetten char %
+
+ -- Tomas Halman <TomasHalman@eaton.com>  Wed, 3 Sep  2014 11:49:16 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - fixed prefix
+
+ -- Tomas Halman <TomasHalman@eaton.com>  Wed, 3 Sep  2014 11:37:27 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - pkgconfig for debian
+
+ -- Tomas Halman <TomasHalman@eaton.com>  Wed, 3 Sep  2014 11:28:06 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - pkgconfig for debian
+
+ -- Tomas Halman <TomasHalman@eaton.com>  Wed, 3 Sep  2014 11:19:49 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - xz -> gz
+
+ -- Tomas Halman <TomasHalman@eaton.com>  Wed, 3 Sep  2014 08:58:08 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - pkg config patch + rpm spec file
+
+ -- Tomas Halman <TomasHalman@eaton.com>  Wed, 3 Sep  2014 08:42:12 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - Added libcidr deb package rule
+
+ -- Tomas Halman <TomasHalman@eaton.com>  Tue, 26 Aug  2014 12:58:05 +0200
+
+czmq (0.0.1444044985~231fd40-1) stable; urgency=low
+  - First two packages
+
+ -- Michal Hrusecky <MichalHrusecky@Eaton.com>  Thu, 21 Aug  2014 11:03:30 +0200
+
