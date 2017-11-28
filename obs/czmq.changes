@@ -1,0 +1,88 @@
+-------------------------------------------------------------------
+Tue Nov 21 13:03:36 UTC 2017 - MichalMarek1@eaton.com
+
+- Backport zlist_dup fixes from upstream:
+  0001-Problem-zlist_dup-doesn-t-create-copy-autofree-list-.patch
+  0002-Problem-zlist_dup-does-not-copy-comparison-function.patch
+
+-------------------------------------------------------------------
+Wed Nov 16 11:36:43 UTC 2016 - michalvyskocil@eaton.com
+
+- add 0001-suppress-sndtimeo-assert.patch
+  * suppress zsock_set_sndtimeo assert for shutdown
+
+-------------------------------------------------------------------
+Tue Nov  8 14:58:40 UTC 2016 - michalvyskocil@eaton.com
+
+- add 0000-prevent-s_thread_shim-assert.patch
+  * fixes s_thread_shim and zactor_destroy
+
+-------------------------------------------------------------------
+Mon Oct 26 12:33:17 UTC 2015 - michalvyskocil@eaton.com
+
+- Update to 3.0.2, bugfix release
+
+-------------------------------------------------------------------
+Mon Jun  8 07:18:18 UTC 2015 - mvyskocil@opensuse.org
+
+- Update to 3.0.1
+ * New zsock class that works without contexts, and has smart
+   constructors (create and connect/bind in one step).
+ * New zactor class for multithreaded development, evolved from
+   old zthread attached threads.
+ * New zgossip discovery service.
+ * New zrex class for regular expressions.
+ * New process management functions in zsys.
+- These V2 classes are deprecated:
+ * zauth (rewritten as actor)
+ * zbeacon (rewritten as actor)
+ * zctx (deprecated)
+ * zmonitor (rewritten as actor)
+ * zmutex (deprecated)
+ * zproxy (rewritten as actor)
+ * zsocket (deprecated by zsock)
+ * zsockopt (deprecated by zsock_option)
+ * zthread (deprecated by zactor)
+
+-------------------------------------------------------------------
+Tue Jan 27 12:16:58 UTC 2015 - mvyskocil@opensuse.org
+
+- Update to 3.0.0~git.1422214591.ab92619, bugfixes
+
+-------------------------------------------------------------------
+Fri Jan 16 12:46:25 UTC 2015 - jengelh@inai.de
+
+- Request xz package for rpm, since source is xz archive.
+
+-------------------------------------------------------------------
+Thu Jan  8 14:48:37 UTC 2015 - mvyskocil@opensuse.org
+
+- Need libzmq >= 4.2, needed for malamute broker 
+
+-------------------------------------------------------------------
+Thu Jan  8 08:06:25 UTC 2015 - mvyskocil@opensuse.org
+
+- Update to czmq-3.0.0~git.1420493785.71863a3
+ * add zlistx/zhashx to provide better API than existing zlist/shash
+ * czmq_selftest is no longer installed
+ * remove internal usage of deprecated zsocket
+ * regenerates zgossip engine/codec using latest zproto
+ * speedup of zsock_send/recv
+ * add move NULL checks, memory leak fixes and so
+
+-------------------------------------------------------------------
+Tue Nov  4 12:40:40 UTC 2014 - mvyskocil@opensuse.org
+
+- Update to czmq-3.0.0~git.1415022110.59a4f16
+ * add zclock_usecs at least
+
+-------------------------------------------------------------------
+Thu Oct 16 07:02:35 UTC 2014 - mvyskocil@opensuse.org
+
+- Update to rc version of 3.0.0 3.0.0~git.1413364181.4d79b31
+
+-------------------------------------------------------------------
+Thu Sep 18 06:27:19 UTC 2014 - mvyskocil@opensuse.org
+
+- Initial packaging of czmq for openSUSE 
+
