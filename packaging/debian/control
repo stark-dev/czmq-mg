@@ -3,19 +3,16 @@ Priority: optional
 Maintainer: Alessandro Ghedini <ghedo@debian.org>
 Uploaders: Gergely Nagy <algernon@debian.org>,
            Arnaud Quette <aquette@debian.org>
+Standards-Version: 4.0.1.0
 Build-Depends: debhelper (>= 9),
- cmake,
- libpgm-dev,
- libzmq4-dev,
- pkg-config,
- libtool,
- autoconf,
-  automake
-Standards-Version: 3.9.5
-Section: libs
-Homepage: http://czmq.zeromq.org/
-Vcs-Git: git://git.debian.org/collab-maint/czmq.git
-Vcs-Browser: http://git.debian.org/?p=collab-maint/czmq.git;a=summary
+    libpgm-dev,
+    libzmq4-dev,
+    pkg-config,
+    libtool,
+    autoconf,
+    automake
+    asciidoc-base | asciidoc, xmlto,
+    dh-autoreconf
 
 Package: libczmq1
 Architecture: any
