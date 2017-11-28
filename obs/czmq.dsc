@@ -11,4 +11,4 @@ Build-Depends: debhelper (>= 9), cmake, libpgm-dev, libzmq4-dev, pkg-config, lib
 Package-List:
  libczmq-dev deb libdevel optional arch=any
  libczmq1 deb libs optional arch=any
-DEBTRANSFORM-TAR: v3.0.2.tar.gz
+DEBTRANSFORM-TAR: czmq-3.0.2.20171128130150~gita523b94f927e.tar.gz
