@@ -47,15 +47,15 @@ matrix:
         packages:
         - valgrind
         - uuid-dev
-  - env: BUILD_TYPE=valgrind ZMQ_REPO=libzmq WITH_LIBSODIUM=1
-    os: linux
-    dist: trusty
-    sudo: required
-    addons:
-      apt:
-        packages:
-        - valgrind
-        - uuid-dev
+#  - env: BUILD_TYPE=valgrind ZMQ_REPO=libzmq WITH_LIBSODIUM=1
+#    os: linux
+#    dist: trusty
+#    sudo: required
+#    addons:
+#      apt:
+#        packages:
+#        - valgrind
+#        - uuid-dev
 
   - env: BUILD_TYPE=selftest ZMQ_REPO=zeromq3-x ADDRESS_SANITIZER=enabled
     os: linux
