@@ -6,7 +6,7 @@ Uploaders: Gergely Nagy <algernon@debian.org>,
 Standards-Version: 4.0.1.0
 Build-Depends: debhelper (>= 9),
     libpgm-dev,
-    libzmq4-dev,
+    libzmq3-dev,
     pkg-config,
     libtool,
     autoconf,
