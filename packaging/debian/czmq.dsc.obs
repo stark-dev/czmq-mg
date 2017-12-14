@@ -1,6 +1,6 @@
 Format: 1.0
 Source: czmq
-Binary: libczmq1, libczmq-dev, libczmq-dbg
+Binary: libczmq1, libczmq-dev, czmq-dbg
 Architecture: any
 Version: 3.0.2-3
 Maintainer: Alessandro Ghedini <ghedo@debian.org>
@@ -19,5 +19,6 @@ Build-Depends: debhelper (>= 9),
 Package-List:
  libczmq-dev deb libdevel optional arch=any
  libczmq1 deb libs optional arch=any
- libczmq-dbg deb debug optional arch=any
+ czmq deb libs optional arch=any
+ czmq-dbg deb debug optional arch=any
 DEBTRANSFORM-TAR: czmq-3.0.2.tar.gz
