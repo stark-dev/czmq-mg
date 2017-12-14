@@ -16,4 +16,4 @@ override_dh_auto_test:
 	echo "Skipping as unstable"
 
 override_dh_strip:
-	dh_strip --dbg-package=libczmq-dbg
+	dh_strip --dbg-package=czmq-dbg
