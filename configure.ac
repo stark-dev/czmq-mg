@@ -82,8 +82,10 @@ AC_ARG_ENABLE(address-sanitizer, [AS_HELP_STRING([--enable-address-sanitizer=yes
                   [CZMQ_ASAN="$enableval"])
 
 if test "x${CZMQ_ASAN}" == "xyes"; then
-    CFLAGS="${CFLAGS} -fsanitize=address -g -O0 -fno-omit-frame-pointer"
-    CXXFLAGS="${CXXFLAGS} -fsanitize=address -g -O0 -fno-omit-frame-pointer"
+#    CFLAGS="${CFLAGS} -fsanitize=address -g -O0 -fno-omit-frame-pointer"
+#    CXXFLAGS="${CXXFLAGS} -fsanitize=address -g -O0 -fno-omit-frame-pointer"
+    CFLAGS="${CFLAGS} -fsanitize=address"
+    CXXFLAGS="${CXXFLAGS} -fsanitize=address"
 
     AM_CONDITIONAL(ENABLE_ASAN, true)
     AC_MSG_RESULT([yes])
