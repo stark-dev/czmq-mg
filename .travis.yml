@@ -12,12 +12,12 @@ addons:
     - uuid-dev
 
 env:
-- BUILD_TYPE=default ZMQ_REPO_URL=https://github.com/42ity/libzmq.git ZMQ_REPO_BRANCH=4.2.0-FTY-master
-- BUILD_TYPE=default ZMQ_REPO_URL=https://github.com/42ity/libzmq.git ZMQ_REPO_BRANCH=4.2.0-FTY-master WITH_LIBSODIUM=1
-#- BUILD_TYPE=default ZMQ_REPO=zeromq2-x
-- BUILD_TYPE=default ZMQ_REPO=zeromq3-x
-- BUILD_TYPE=default ZMQ_REPO=zeromq4-x WITH_LIBSODIUM=1
-- BUILD_TYPE=default ZMQ_REPO=libzmq    WITH_LIBSODIUM=1
+- BUILD_TYPE=default-Werror ZMQ_REPO_URL=https://github.com/42ity/libzmq.git ZMQ_REPO_BRANCH=4.2.0-FTY-master
+- BUILD_TYPE=default-Werror ZMQ_REPO_URL=https://github.com/42ity/libzmq.git ZMQ_REPO_BRANCH=4.2.0-FTY-master WITH_LIBSODIUM=1
+#- BUILD_TYPE=default-Werror ZMQ_REPO=zeromq2-x
+- BUILD_TYPE=default-Werror ZMQ_REPO=zeromq3-x
+- BUILD_TYPE=default-Werror ZMQ_REPO=zeromq4-x WITH_LIBSODIUM=1
+- BUILD_TYPE=default-Werror ZMQ_REPO=libzmq    WITH_LIBSODIUM=1
 #- BUILD_TYPE=valgrind ZMQ_REPO=zeromq2-x
 #- BUILD_TYPE=valgrind ZMQ_REPO=zeromq3-x
 #- BUILD_TYPE=valgrind ZMQ_REPO=zeromq4-x WITH_LIBSODIUM=1

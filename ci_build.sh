@@ -2,7 +2,7 @@
 
 case "$BUILD_TYPE" in
 "") echo "BUILD_TYPE is not set!" >&2 ; false ;;
-default|valgrind|selftest)
+default|default-Werror|valgrind|selftest)
     CONFIG_OPTS=()
     if [ -n "$ADDRESS_SANITIZER" ] && [ "$ADDRESS_SANITIZER" == "enabled" ]; then
         CONFIG_OPTS+=("--enable-address-sanitizer=yes")
@@ -44,15 +44,19 @@ default|valgrind|selftest)
         git rev-parse HEAD; ./autogen.sh && ./configure "${CONFIG_OPTS[@]}" --enable-drafts="${ZMQ_CONFIG_OPTS_DRAFT}" &&
         make check && sudo make install && sudo ldconfig ) || exit 1
 
+    if [ "$BUILD_TYPE" == "default-Werror" ]; then
+        CONFIG_OPTS+=("--enable-Werror")
+    fi
+
     # Build, check, and install CZMQ from local source
     echo "==== BUILD LIBCZMQ (current project checkout) ===="
     git rev-parse HEAD
     ./autogen.sh && ./configure "${CONFIG_OPTS[@]}" && \
     case "$BUILD_TYPE" in
-        default) make check-verbose VERBOSE=1 && sudo make install ;;
+        default|default-Werror) make check-verbose VERBOSE=1 && sudo make install ;;
         selftest) ASAN_OPTIONS=verbosity=1 make check-verbose ;;
         valgrind) make memcheck ;;
-        *) echo "Unknown BUILD_TYPE" 2>&1; false ;;
+        *) echo "Unknown BUILD_TYPE: '$BUILD_TYPE'" 2>&1; false ;;
     esac
     ;;
 *)
