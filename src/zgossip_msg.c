@@ -542,7 +542,12 @@ zgossip_msg_set_key (zgossip_msg_t *self, const char *value)
     assert (value);
     if (value == self->key)
         return;
+#pragma GCC diagnostic push
+#if __GNUC__ >= 8
+#pragma GCC diagnostic ignored "-Wstringop-truncation"
+#endif
     strncpy (self->key, value, 255);
+#pragma GCC diagnostic pop
     self->key [255] = 0;
 }
 
