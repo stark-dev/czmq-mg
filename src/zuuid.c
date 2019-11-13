@@ -214,6 +214,10 @@ zuuid_str_canonical (zuuid_t *self)
     if (!self->str_canonical)
         self->str_canonical = (char *) zmalloc (8 + 4 + 4 + 4 + 12 + 5);
     *self->str_canonical = 0;
+#pragma GCC diagnostic push
+#if __GNUC__ >= 8
+#pragma GCC diagnostic ignored "-Wstringop-truncation"
+#endif
     strncat (self->str_canonical, self->str, 8);
     strcat  (self->str_canonical, "-");
     strncat (self->str_canonical, self->str + 8, 4);
@@ -223,6 +227,7 @@ zuuid_str_canonical (zuuid_t *self)
     strncat (self->str_canonical, self->str + 16, 4);
     strcat  (self->str_canonical, "-");
     strncat (self->str_canonical, self->str + 20, 12);
+#pragma GCC diagnostic pop
 
     int char_nbr;
     for (char_nbr = 0; char_nbr < 36; char_nbr++)
