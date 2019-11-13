@@ -2,7 +2,7 @@
 
 case "$BUILD_TYPE" in
 "") echo "BUILD_TYPE is not set!" >&2 ; false ;;
-default|valgrind|selftest)
+default|default-Werror|valgrind|selftest)
     CONFIG_OPTS=()
     if [ -n "$ADDRESS_SANITIZER" ] && [ "$ADDRESS_SANITIZER" == "enabled" ]; then
         CONFIG_OPTS+=("--enable-address-sanitizer=yes")
@@ -43,6 +43,10 @@ default|valgrind|selftest)
         if [ "$WITH_LIBSODIUM" = 1 ]; then CONFIG_OPTS+=("--with-libsodium=yes") ; else CONFIG_OPTS+=("--with-libsodium=no") ; fi
         git rev-parse HEAD; ./autogen.sh && ./configure "${CONFIG_OPTS[@]}" --enable-drafts="${ZMQ_CONFIG_OPTS_DRAFT}" &&
         make check && sudo make install && sudo ldconfig ) || exit 1
+
+    if [ "$BUILD_TYPE" == "default-Werror" ]; then
+        CONFIG_OPTS+=("--enable-Werror")
+    fi
 
     # Build, check, and install CZMQ from local source
     echo "==== BUILD LIBCZMQ (current project checkout) ===="
