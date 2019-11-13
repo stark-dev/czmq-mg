@@ -53,10 +53,10 @@ default|default-Werror|valgrind|selftest)
     git rev-parse HEAD
     ./autogen.sh && ./configure "${CONFIG_OPTS[@]}" && \
     case "$BUILD_TYPE" in
-        default) make check-verbose VERBOSE=1 && sudo make install ;;
+        default|default-Werror) make check-verbose VERBOSE=1 && sudo make install ;;
         selftest) ASAN_OPTIONS=verbosity=1 make check-verbose ;;
         valgrind) make memcheck ;;
-        *) echo "Unknown BUILD_TYPE" 2>&1; false ;;
+        *) echo "Unknown BUILD_TYPE: '$BUILD_TYPE'" 2>&1; false ;;
     esac
     ;;
 *)
