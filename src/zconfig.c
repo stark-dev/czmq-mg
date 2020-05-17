@@ -597,6 +597,9 @@ zconfig_chunk_load (zchunk_t *chunk)
     char *data_ptr = (char *) zchunk_data (chunk);
     size_t remaining = zchunk_size (chunk);
 
+    char cur_line_p [1024 + 1]; // predefined line buffer (to limit zmalloc() calls)
+    char *cur_line = (char *) NULL;
+
     while (remaining) {
         //  Copy stuff into cur_line; not fastest but safest option
         //  since chunk may not be null terminated, etc.
@@ -607,9 +610,23 @@ zconfig_chunk_load (zchunk_t *chunk)
         else
             cur_size = remaining;
 
-        if (cur_size > 1024)
-            cur_size = 1024;
-        char cur_line [1024 + 1];
+        if (cur_line && (cur_line != cur_line_p))
+            free (cur_line); //  Release prev. allocated cur_line
+
+        if (cur_size > 1024) {
+            // NOTE: WA Valgring memcheck "Invalid read of size 4" error > alloc. 4 bytes more
+            //       seems the parser is buggy, revealed by the dyn. allocation to fix support of 'big length' value
+            cur_line = (char *) zmalloc (cur_size + 4 + 1); // allocate buffer (+ 0-term)
+            if (!cur_line) {
+                zclock_log ("E (zconfig): (%d) buffer allocation failed (%zu bytes)", lineno, cur_size);
+                valid = false;
+                break;
+            }
+        }
+        else {
+            cur_line = cur_line_p; // points to the predefined buffer
+        }
+
         memcpy (cur_line, data_ptr, cur_size);
         cur_line [cur_size] = '\0';
         data_ptr = eoln? eoln + 1: NULL;
@@ -670,6 +687,11 @@ zconfig_chunk_load (zchunk_t *chunk)
         if (!valid)
             break;
     }
+
+    //  Release allocated cur_line
+    if (cur_line && (cur_line != cur_line_p))
+        free (cur_line);
+
     //  Either the whole ZPL stream is valid or none of it is
     if (!valid)
         zconfig_destroy (&self);
@@ -939,6 +961,48 @@ zconfig_print (zconfig_t *self)
 //  --------------------------------------------------------------------------
 //  Self test of this class
 
+static void zconfig_test_save_load_long_value (bool verbose)
+{
+    //verbose = true;
+    if (verbose) printf("\n%s\n", __FUNCTION__);
+
+    zconfig_t *root = zconfig_new ("root", NULL);
+    assert (root);
+    zconfig_t *item = zconfig_new ("item", root);
+    assert (item);
+
+    // see zconfig_chunk_load(), predefined char *cur_line[1024 + 1];
+    const int sz0 = 1000, sz1 = 1048;
+    for (int sz = sz0; sz <= sz1; sz++)
+    {
+        char *value = (char*) zmalloc(sz + 1);
+        assert (value);
+        memset (value, 'a', sz);
+        value[sz] = '\0';
+        zconfig_set_value (item, value);
+
+        zconfig_t *root2 = NULL;
+        {
+            char *saved = zconfig_str_save (root);
+            assert (saved);
+            root2 = zconfig_str_load (saved);
+            free (saved);
+        }
+
+        if (verbose) printf("sz: %d, root2 %s\n", sz, (root2 ? "OK" : "KO"));
+        assert (root2);
+
+        const char *value2 = zconfig_get (root2, "item", NULL);
+        assert (value2);
+        assert (streq (value, value2));
+
+        free (value);
+        zconfig_destroy (&root2);
+    }
+
+    zconfig_destroy (&root);
+}
+
 void
 zconfig_test (bool verbose)
 {
@@ -1018,6 +1082,9 @@ zconfig_test (bool verbose)
 
     zconfig_destroy (&root);
     zchunk_destroy (&chunk);
+
+    // test save/load with long value
+    zconfig_test_save_load_long_value(verbose);
 
     //  Delete all test files
     zdir_t *dir = zdir_new (TESTDIR, NULL);
