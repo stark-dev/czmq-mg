@@ -978,7 +978,7 @@ static void zconfig_test_save_load_long_value (bool verbose)
         assert (value);
         memset (value, 'a', sz);
         value[sz] = '\0';
-        zconfig_set_value (item, (const char*) value);
+        zconfig_set_value (item, "%s", value);
 
         zconfig_t *root2 = NULL;
         {
