@@ -840,7 +840,7 @@ s_collect_value (char **start, int lineno)
 
 
 //  --------------------------------------------------------------------------
-//  Save a config tree to a new memory chunk; the chunk 
+//  Save a config tree to a new memory chunk; the chunk
 
 zchunk_t *
 zconfig_chunk_save (zconfig_t *self)
@@ -963,8 +963,7 @@ zconfig_print (zconfig_t *self)
 
 static void zconfig_test_save_load_long_value (bool verbose)
 {
-    //verbose = true;
-    if (verbose) printf("\n%s\n", __FUNCTION__);
+    if (verbose) printf("\n%s\n", "zconfig_test_save_load_long_value");
 
     zconfig_t *root = zconfig_new ("root", NULL);
     assert (root);
@@ -979,7 +978,7 @@ static void zconfig_test_save_load_long_value (bool verbose)
         assert (value);
         memset (value, 'a', sz);
         value[sz] = '\0';
-        zconfig_set_value (item, value);
+        zconfig_set_value (item, (const char*) value);
 
         zconfig_t *root2 = NULL;
         {
