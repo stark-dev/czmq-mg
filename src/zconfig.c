@@ -970,10 +970,17 @@ static void zconfig_test_save_load_long_value (bool verbose)
     zconfig_t *item = zconfig_new ("item", root);
     assert (item);
 
-    // see zconfig_chunk_load(), predefined char *cur_line[1024 + 1];
-    const int sz0 = 1000, sz1 = 1048;
-    for (int sz = sz0; sz <= sz1; sz++)
+    // see zconfig_chunk_load(), predefined char *cur_line;
+
+    const int sizes[] = {
+        8, 16, 32, 64, 128, 256,
+        512, 1024, 2048, 4096, 8192,
+        0
+    };
+
+    for (int i = 0; sizes[i] != 0; i++)
     {
+        int sz = sizes[i];
         char *value = (char*) zmalloc(sz + 1);
         assert (value);
         memset (value, 'a', sz);
